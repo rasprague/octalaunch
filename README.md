@@ -13,7 +13,7 @@ Initial aims for Octalaunch is to improve upon the plaabliity of the Octatrack. 
 # Gear setup
 Plug the Lauchpad Pro to the computer running Octalauch via USB. Harware MIDI out from the Lauchpad Pro plugs into the MIDI port on the Octatrack.
 
-As for Lauchpad Pro settings, for each of the standalone Note, Drum, and Fader modes, disable MIDI out and set the MIDI channel to the autochannel (the default is channel 11)
+As for Lauchpad Pro settings, for each of the standalone Note, Drum, and Fader modes, disable MIDI out and set the MIDI channel to the autochannel (the default is channel 11). See "Setup Page Options" in the Launchpad manual.
 
 # How to use
 ** Coming soon **
