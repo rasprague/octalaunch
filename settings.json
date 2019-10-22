@@ -1,0 +1,33 @@
+{
+    "drumPage": {
+        "selectedAudioTrack": 2, 
+        "selectedMidiTrack": 2
+    }, 
+    "notePage": {
+        "selectedAudioTrack": 0, 
+        "selectedMidiTrack": 1
+    }, 
+    "selectedPage": "drum", 
+    "trackChannels": {
+        "audioTrackChannel": [
+            0, 
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7
+        ], 
+        "midiTrackChannel": [
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ]
+    }
+}
