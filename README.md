@@ -10,8 +10,18 @@ That's where Octalauch comes in. Octalauch sits between the Lauchpad Pro and the
 # Goals
 Initial aims for Octalaunch is to improve upon the plaabliity of the Octatrack. I'm focusing efforts on areas the Octatrack doesn't do so well, e.g. playing chromatically, triggering sample slices, and controlling track volumes in one place. Functions it already does well I won't be focusing on, e.g. track muting, track parameters, freeze delay, etc.
 
+# Gear setup
+Plug the Lauchpad Pro to the computer running Octalauch via USB. Harware MIDI out from the Lauchpad Pro plugs into the MIDI port on the Octatrack.
+
+As for Lauchpad Pro settings, for each of the standalone Note, Drum, and Fader modes, disable MIDI out and set the MIDI channel to the autochannel (the default is channel 11)
+
 # How to use
 ** Coming soon **
+
+# The future
+* Fully custom layouts that don't rely on the standalone modes (e.g. our own Live mode)
+* support for other grooveboxes / hardware setups
+* Single-board computer (e.g. Raspberry Pi) support and testing
 
 # Dependencies
 mido - MIDI Objects for Python https://mido.readthedocs.io
