@@ -1,6 +1,10 @@
 # Octalaunch
 Get your Launchpad Pro playing the Octatrack
 
+## tl;dr
+Hook up a Launchpad Pro to an Octatrack. Use its excellent Note mode to play samples chromaticaly, and its Drum mode to play sample slices MPC style.
+
+## The long version
 The Octrack from Elektron is a fine piece of music gear, able to handle anything from sample playing and chopping, to audio mixing and mangling, and much more. However, playing it like an instrument isn't so fun. Its 16 trigger buttons, layed out in a single row, is cumbersome to play on. Banging out beats with sample slices doesn't feel quite right, and playing melodic sample chromatically is unintuitive. Also, its MIDI implementation is a bit strange in parts.
 
 Enter the Launchpad from Novation. The Launchpad is a MIDI controller featuring an 8x8 grid of light-up drum pads. It's a playable surface that looks great and feels great. The Pro model adds velocity sensitivity; aftertouch; a slick note scale mode; standalone Note, Drum, and Fader modes (no Ableton Live needed); and hardware MIDI ports on the back. What it doesn't do is allow for any customizing of the MIDI notes or CCs it sends.
