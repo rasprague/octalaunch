@@ -28,5 +28,6 @@ As for Lauchpad Pro settings, for each of the standalone Note, Drum, and Fader m
 * mido - MIDI Objects for Python https://mido.readthedocs.io
 * rtmidi - Cross platform realtime MIDI i/o https://pypi.org/project/python-rtmidi/
 
-Elektron Octatrack - https://www.elektron.se/products/octatrack-mkii/
-Novation Launchpad Pro - https://novationmusic.com/launch/launchpad-pro
+# Links
+* Elektron Octatrack - https://www.elektron.se/products/octatrack-mkii/
+* Novation Launchpad Pro - https://novationmusic.com/launch/launchpad-pro
