@@ -21,12 +21,12 @@ As for Lauchpad Pro settings, for each of the standalone Note, Drum, and Fader m
 # The future
 * MIDI in from the Octatrack to keep Fader values in sync
 * Fully custom layouts that don't rely on the standalone modes (e.g. our own Live mode)
-* support for other grooveboxes / hardware setups
+* Support for other grooveboxes / hardware setups
 * Single-board computer (e.g. Raspberry Pi) support and testing
 
 # Dependencies
-mido - MIDI Objects for Python https://mido.readthedocs.io
-rtmidi - Cross platform realtime MIDI i/o https://pypi.org/project/python-rtmidi/
+* mido - MIDI Objects for Python https://mido.readthedocs.io
+* rtmidi - Cross platform realtime MIDI i/o https://pypi.org/project/python-rtmidi/
 
 Elektron Octatrack - https://www.elektron.se/products/octatrack-mkii/
 Novation Launchpad Pro - https://novationmusic.com/launch/launchpad-pro
