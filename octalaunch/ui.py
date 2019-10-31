@@ -9,6 +9,10 @@ def modeChangeHandler():
 def midiHandler():
     return g['midiHandler']
 
+def setup(modeChangeHandler, midiHandler):
+    g['modeChangeHandler'] = modeChangeHandler
+    g['midiHandler'] = midiHandler
+
 class ModeChangeHandler(object):
     def onLive(self):
         pass
