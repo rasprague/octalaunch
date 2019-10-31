@@ -70,5 +70,4 @@ def setup():
     g['drumPage'] = drum_page.DrumPage()
     g['faderPage'] = fader_page.FaderPage()
     g['programmerPage'] = ProgrammerPage()
-    ui.g['modeChangeHandler'] = ModeChangeHandler()
-    ui.g['midiHandler'] = MidiHandler()
+    ui.setup(modeChangeHandler=ModeChangeHandler(), midiHandler=MidiHandler())
