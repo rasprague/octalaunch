@@ -7,7 +7,7 @@
         "selectedAudioTrack": 0, 
         "selectedMidiTrack": 0
     }, 
-    "selectedPage": "drum", 
+    "selectedPage": "note", 
     "trackChannels": {
         "audioTrackChannel": [
             0, 
