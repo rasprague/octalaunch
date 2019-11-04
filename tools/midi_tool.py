@@ -60,6 +60,8 @@ setupMidiPorts()
 def octatrackCCDumpRequest():
     return mido.Message('control_change', channel=10, control=61, value=0)
 
+def ccDump():
+    midiOutPort().send(octatrackCCDumpRequest())
 ####
 import code
 code.interact(local=locals())

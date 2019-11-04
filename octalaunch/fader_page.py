@@ -11,6 +11,7 @@ class FaderPage(ui.Page):
             levelControl = 46
             volumeControl = 25
             trackMute = 49
+
             if port == midi.standaloneInPort():
                 if msg.control >= 21 and msg.control <= 28:
                     track = msg.control - 21
@@ -24,8 +25,15 @@ class FaderPage(ui.Page):
                     if msg.value == 127:
                         track = msg.control - 1
                         channel = settings['trackChannels']['audioTrackChannel'][track]
-                        outMsg = mido.Message('control_change', channel=channel, control=trackMute, value=127)
+                        self.page.muted[track] = not self.page.muted[track]
+                        value = None
+                        if self.page.muted[track]:
+                            value = 127
+                        else:
+                            value = 0
+                        outMsg = mido.Message('control_change', channel=channel, control=trackMute, value=value)
                         midi.midiOutPort().send(outMsg)
+                    self.page.uiDraw()
             elif port == midi.midiInPort():
                 if msg.control == levelControl:
                     channel = msg.channel
@@ -36,14 +44,20 @@ class FaderPage(ui.Page):
                 elif msg.control == trackMute:
                     channel = msg.channel
                     muted = (msg.value != 0)
-                    color = None
-                    if muted:
-                        color = 0
-                    else:
-                        color = 5
                     track = settings['trackChannels']['audioTrackChannel'].index(channel)
-                    outMsg = mido.Message('control_change', channel=midi.autochannel, control=self.page.trackButtons[track], value=color)
-                    midi.standaloneOutPort().send(outMsg)
+                    self.page.muted[track] = muted
+                    self.page.uiDraw()
+                    
     def __init__(self):
         self.trackButtons = [1, 2, 3, 4, 5, 6, 7, 8]
+        self.muted = [False, False, False, False, False, False, False, False]
         self.eventHandler = self.EventHandler(self)
+    def uiDraw(self):
+        for track in range(len(self.trackButtons)):
+            color = None
+            if self.muted[track]:
+                color = 0
+            else:
+                color = 5
+            outMsg = mido.Message('control_change', channel=midi.autochannel, control=self.trackButtons[track], value=color)
+            midi.standaloneOutPort().send(outMsg)
