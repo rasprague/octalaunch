@@ -5,7 +5,7 @@ import mido
 
 class FaderPage(ui.Page):
     class EventHandler(ui.EventHandler):
-        def onCC(self, msg):
+        def onCC(self, port, msg):
             if msg.control >= 21 and msg.control <= 28:
                 track = msg.control - 21
                 channel = settings['trackChannels']['audioTrackChannel'][track]

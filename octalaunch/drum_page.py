@@ -17,7 +17,7 @@ class DrumPage(ui.Page):
             baseAudioTrackNote = 36
             selectedTrack = settings['drumPage']['selectedAudioTrack']
             return baseAudioTrackNote + selectedTrack
-        def onNoteOn(self, msg):
+        def onNoteOn(self, port, msg):
             if not self.page.trackPage.midiTrackMode:
                 # trigger slices
                 selectedTrack = settings['drumPage']['selectedAudioTrack']
@@ -41,7 +41,7 @@ class DrumPage(ui.Page):
                     return
                 outMsg = msg.copy(channel=channel)
                 midi.midiOutPort().send(outMsg)
-        def onPolytouch(self, msg):
+        def onPolytouch(self, port, msg):
             if self.page.trackPage.midiTrackMode:
                 selectedTrack = settings['drumPage']['selectedMidiTrack']
                 channel = settings['trackChannels']['audioMidiChannel'][selectedTrack]
@@ -49,7 +49,7 @@ class DrumPage(ui.Page):
                     return
                 outMsg = msg.copy(channel=channel)
                 midi.midiOutPort().send(outMsg)
-        def onAftertouch(self, msg):
+        def onAftertouch(self, port, msg):
             if self.page.trackPage.midiTrackMode:
                 selectedTrack = settings['drumPage']['selectedMidiTrack']
                 channel = settings['trackChannels']['audioMidiChannel'][selectedTrack]
@@ -57,7 +57,7 @@ class DrumPage(ui.Page):
                     return
                 outMsg = msg.copy(channel=channel)
                 midi.midiOutPort().send(outMsg)
-        def onCC(self, msg):
+        def onCC(self, port, msg):
             self.page.trackPage.eventHandler.onCC(msg)
                 
     def __init__(self):

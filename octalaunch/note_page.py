@@ -19,7 +19,7 @@ class NotePage(ui.Page):
                 if note < 72 or note > 96:
                     return True
             return False
-        def onNoteOn(self, msg):
+        def onNoteOn(self, port, msg):
             if self._noteOutOfRange(msg.note):
                 return
             channel = self._trackToChannel()
@@ -27,7 +27,7 @@ class NotePage(ui.Page):
                 return
             outMsg = msg.copy(channel=channel)
             midi.midiOutPort().send(outMsg)
-        def onPolyTouch(self, msg):
+        def onPolyTouch(self, port, msg):
             if self._noteOutOfRange(msg.note):
                 return
             channel = self._trackToChannel()
@@ -35,13 +35,13 @@ class NotePage(ui.Page):
                 return
             outMsg = msg.copy(channel=channel)
             midi.midiOutPort().send(outMsg)
-        def onAftertouch(self, msg):
+        def onAftertouch(self, port, msg):
             channel = self._trackToChannel()
             if not channel:
                 return
             outMsg = msg.copy(channel=channel)
             midi.midiOutPort().send(outMsg)
-        def onCC(self, msg):
+        def onCC(self, port, msg):
             self.page.trackPage.eventHandler.onCC(msg)
     def __init__(self):
         self.trackPage = TrackPage('notePage')

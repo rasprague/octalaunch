@@ -26,17 +26,17 @@ class ModeChangeHandler(object):
         pass
 
 class MidiHandler(object):
-    def onMsg(self, msg):
+    def onMsg(self, port, msg):
         pass
 
 class EventHandler(object):
-    def onNoteOn(self, msg):
+    def onNoteOn(self, port, msg):
         pass
-    def onPolytouch(self, msg):
+    def onPolytouch(self, port, msg):
         pass
-    def onAftertouch(self, msg):
+    def onAftertouch(self, port, msg):
         pass
-    def onCC(self, msg):
+    def onCC(self, port, msg):
         pass
 
 class Page(object):
@@ -46,13 +46,12 @@ class Page(object):
         pass
     def uiDraw(self):
         pass
-    def onMsg(self, msg):
+    def onMsg(self, port, msg):
         if msg.type == 'note_on':
-            self.eventHandler.onNoteOn(msg)
+            self.eventHandler.onNoteOn(port, msg)
         elif msg.type == 'polytouch':
-            self.eventHandler.onPolytouch(msg)
+            self.eventHandler.onPolytouch(port, msg)
         elif msg.type == 'aftertouch':
-            self.eventHandler.onAftertouch(msg)
+            self.eventHandler.onAftertouch(port, msg)
         elif msg.type == 'control_change':
-            self.eventHandler.onCC(msg)
-    
+            self.eventHandler.onCC(port, msg)
