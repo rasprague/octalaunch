@@ -30,6 +30,10 @@ def setupLaunchpad():
     
     g['lp'] = lp
 
+def triggerOctatackMidiDump():
+    outMsg = mido.Message('control_change', channel=10, control=61, value=0)
+    midi.midiOutPort().send(outMsg)
+    
 def gotoSavedSelectedPage():
     # launchpad sysex 'header'
     headerMsg = mido.Message('sysex', data=(0, 32, 41, 2, 16))
@@ -59,6 +63,7 @@ def main():
     midi.setupMidiPorts()
     octatrack_pages.setup()
     setupLaunchpad()
+    triggerOctatackMidiDump()
     gotoSavedSelectedPage()
     try:
         while True:
