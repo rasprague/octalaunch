@@ -3,6 +3,20 @@ import mido
 
 autochannel = 10
 
+# macos
+# launchpad_ports = [
+#     u'Launchpad Pro Live Port',
+#     u'Launchpad Pro Standalone Port',
+#     u'Launchpad Pro MIDI Port'
+# ]
+
+# ubuntu
+launchpad_ports = [
+    u'Launchpad Pro MIDI 1',
+    u'Launchpad Pro MIDI 2',
+    u'Launchpad Pro MIDI 3'
+]
+
 g = {
     'liveOutPort': None,
     'liveInPort': None,
@@ -22,14 +36,24 @@ def liveOutPort():
     return g['liveOutPort']
 
 def setupMidiPorts():
-    g['liveInPort'] = mido.open_input(u'Launchpad Pro Live Port', callback=midiInCallback)
-    g['liveOutPort'] = mido.open_output(u'Launchpad Pro Live Port')
-    g['standaloneInPort'] = mido.open_input(u'Launchpad Pro Standalone Port', callback=midiInCallback)
-    g['standaloneOutPort'] = mido.open_output(u'Launchpad Pro Standalone Port')
-    g['midiInPort'] = mido.open_input(u'Launchpad Pro MIDI Port', callback=midiInCallback)
-    g['midiOutPort'] = mido.open_output(u'Launchpad Pro MIDI Port')
+    g['liveInPort'] = mido.open_input(launchpad_ports[0], callback=liveInPortCallback)
+    g['liveOutPort'] = mido.open_output(launchpad_ports[0])
+    g['standaloneInPort'] = mido.open_input(launchpad_ports[1], callback=standaloneInPortCallback)
+    g['standaloneOutPort'] = mido.open_output(launchpad_ports[1])
+    g['midiInPort'] = mido.open_input(launchpad_ports[2], callback=midiInPortCallback)
+    g['midiOutPort'] = mido.open_output(launchpad_ports[2])
 
-def midiInCallback(msg):
+def liveInPortCallback(msg):
+    midiCallback(g['liveInPort'], msg)
+
+def standaloneInPortCallback(msg):
+    midiCallback(g['standaloneInPort'], msg)
+
+def midiInPortCallback(msg):
+    midiCallback(g['midiInPort'], msg)
+    pass
+
+def midiCallback(port, msg):
     if msg.type == 'sysex':
         if msg.data[0:5] == (0, 32, 41, 2, 16):
             # launchpad sysex
@@ -63,4 +87,4 @@ def midiInCallback(msg):
                     ui.modeChangeHandler().onProgrammer()
     else:
         # print(msg)
-        ui.midiHandler().onMsg(msg)
+        ui.midiHandler().onMsg(port, msg)

@@ -60,8 +60,8 @@ class ModeChangeHandler(ui.ModeChangeHandler):
         settings['selectedPage'] = 'programmer'
     
 class MidiHandler(ui.MidiHandler):
-    def onMsg(self, msg):
-        g['currentPage'].onMsg(msg)
+    def onMsg(self, port, msg):
+        g['currentPage'].onMsg(port, msg)
 
 def setup():
     g['currentPage'] = None

@@ -56,10 +56,10 @@ def gotoSavedSelectedPage():
 
 def main():
     settings.load()
-    #midi.setupMidiPorts()
-    #octatrack_pages.setup()
-    #setupLaunchpad()
-    #gotoSavedSelectedPage()
+    midi.setupMidiPorts()
+    octatrack_pages.setup()
+    setupLaunchpad()
+    gotoSavedSelectedPage()
     try:
         while True:
             pass
@@ -73,4 +73,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
