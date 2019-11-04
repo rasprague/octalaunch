@@ -11,9 +11,9 @@ class NotePage(ui.Page):
             self.page = page
         def _trackToChannel(self):
             if self.page.trackPage.midiTrackMode:
-                return settings['trackChannels']['midiTrackChannels'][settings['notePage']['selectedMidiTrack']]
+                return settings['trackChannels']['midiTrackChannel'][settings['notePage']['selectedMidiTrack']]
             else:
-                return settings['trackChannels']['audioTrackChannels'][settings['notePage']['selectedAudioTrack']]
+                return settings['trackChannels']['audioTrackChannel'][settings['notePage']['selectedAudioTrack']]
         def _noteOutOfRange(self, note):
             if not self.page.trackPage.midiTrackMode:
                 if note < 72 or note > 96:
@@ -23,7 +23,7 @@ class NotePage(ui.Page):
             if self._noteOutOfRange(msg.note):
                 return
             channel = self._trackToChannel()
-            if not channel:
+            if channel is None:
                 return
             outMsg = msg.copy(channel=channel)
             midi.midiOutPort().send(outMsg)
@@ -31,13 +31,13 @@ class NotePage(ui.Page):
             if self._noteOutOfRange(msg.note):
                 return
             channel = self._trackToChannel()
-            if not channel:
+            if channel is None:
                 return
             outMsg = msg.copy(channel=channel)
             midi.midiOutPort().send(outMsg)
         def onAftertouch(self, port, msg):
             channel = self._trackToChannel()
-            if not channel:
+            if channel is None:
                 return
             outMsg = msg.copy(channel=channel)
             midi.midiOutPort().send(outMsg)

@@ -18,47 +18,51 @@ class DrumPage(ui.Page):
             selectedTrack = settings['drumPage']['selectedAudioTrack']
             return baseAudioTrackNote + selectedTrack
         def onNoteOn(self, port, msg):
-            if not self.page.trackPage.midiTrackMode:
-                # trigger slices
-                selectedTrack = settings['drumPage']['selectedAudioTrack']
-                channel = settings['trackChannels']['audioTrackChannel'][selectedTrack]
-                if not channel:
-                    return
-                if msg.velocity == 0:
-                    outMsg = mido.Message('note_off', channel=channel, note=self._audioTrackToNote(), velocity=msg.velocity)
-                    midi.midiOutPort().send(outMsg)
+            if port == midi.standaloneInPort():
+                if not self.page.trackPage.midiTrackMode:
+                    # trigger slices
+                    selectedTrack = settings['drumPage']['selectedAudioTrack']
+                    channel = settings['trackChannels']['audioTrackChannel'][selectedTrack]
+                    if channel is None:
+                        return
+                    if msg.velocity == 0:
+                        outMsg = mido.Message('note_off', channel=channel, note=self._audioTrackToNote(), velocity=msg.velocity)
+                        midi.midiOutPort().send(outMsg)
+                    else:
+                        outMsg = mido.Message('control_change', channel=channel, control=17, value=self._noteToSlice(msg.note))
+                        midi.midiOutPort().send(outMsg)
+                        util.sleep_ms(60)
+                        outMsg = mido.Message('note_on', channel=channel, note=self._audioTrackToNote(), velocity=msg.velocity)
+                        midi.midiOutPort().send(outMsg)
                 else:
-                    outMsg = mido.Message('control_change', channel=channel, control=17, value=self._noteToSlice(msg.note))
+                    # pass the notes through
+                    selectedTrack = settings['drumPage']['selectedMidiTrack']
+                    channel = settings['trackChannels']['audioMidiChannel'][selectedTrack]
+                    if channel is None:
+                        return
+                    outMsg = msg.copy(channel=channel)
                     midi.midiOutPort().send(outMsg)
-                    util.sleep_ms(60)
-                    outMsg = mido.Message('note_on', channel=channel, note=self._audioTrackToNote(), velocity=msg.velocity)
-                    midi.midiOutPort().send(outMsg)
-            else:
-                # pass the notes through
-                selectedTrack = settings['drumPage']['selectedMidiTrack']
-                channel = settings['trackChannels']['audioMidiChannel'][selectedTrack]
-                if not channel:
-                    return
-                outMsg = msg.copy(channel=channel)
-                midi.midiOutPort().send(outMsg)
         def onPolytouch(self, port, msg):
-            if self.page.trackPage.midiTrackMode:
-                selectedTrack = settings['drumPage']['selectedMidiTrack']
-                channel = settings['trackChannels']['audioMidiChannel'][selectedTrack]
-                if not channel:
-                    return
-                outMsg = msg.copy(channel=channel)
-                midi.midiOutPort().send(outMsg)
+            if port == midi.standaloneInPort():
+                if self.page.trackPage.midiTrackMode:
+                    selectedTrack = settings['drumPage']['selectedMidiTrack']
+                    channel = settings['trackChannels']['audioMidiChannel'][selectedTrack]
+                    if channel is None:
+                        return
+                    outMsg = msg.copy(channel=channel)
+                    midi.midiOutPort().send(outMsg)
         def onAftertouch(self, port, msg):
-            if self.page.trackPage.midiTrackMode:
-                selectedTrack = settings['drumPage']['selectedMidiTrack']
-                channel = settings['trackChannels']['audioMidiChannel'][selectedTrack]
-                if not channel:
-                    return
-                outMsg = msg.copy(channel=channel)
-                midi.midiOutPort().send(outMsg)
+            if port == midi.standaloneInPort():
+                if self.page.trackPage.midiTrackMode:
+                    selectedTrack = settings['drumPage']['selectedMidiTrack']
+                    channel = settings['trackChannels']['audioMidiChannel'][selectedTrack]
+                    if channel is None:
+                        return
+                    outMsg = msg.copy(channel=channel)
+                    midi.midiOutPort().send(outMsg)
         def onCC(self, port, msg):
-            self.page.trackPage.eventHandler.onCC(msg)
+            if port == midi.standaloneInPort():
+                self.page.trackPage.eventHandler.onCC(msg)
                 
     def __init__(self):
         self.trackPage = TrackPage('drumPage')
