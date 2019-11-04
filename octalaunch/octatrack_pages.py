@@ -61,7 +61,8 @@ class ModeChangeHandler(ui.ModeChangeHandler):
     
 class MidiHandler(ui.MidiHandler):
     def onMsg(self, port, msg):
-        g['currentPage'].onMsg(port, msg)
+        if g['currentPage'] is not None:
+            g['currentPage'].onMsg(port, msg)
 
 def setup():
     g['currentPage'] = None

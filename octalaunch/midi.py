@@ -26,14 +26,24 @@ g = {
     'midiInPort': None
 }
 
-def midiOutPort():
-    return g['midiOutPort']
-    
+def liveOutPort():
+    return g['liveOutPort']
+
+def liveInPort():
+    return g['liveInPort']
+
 def standaloneOutPort():
     return g['standaloneOutPort']
 
-def liveOutPort():
-    return g['liveOutPort']
+def standaloneInPort():
+    return g['standaloneInPort']
+
+def midiOutPort():
+    return g['midiOutPort']
+
+def midiInPort():
+    return g['midiInPort']
+
 
 def setupMidiPorts():
     g['liveInPort'] = mido.open_input(launchpad_ports[0], callback=liveInPortCallback)
