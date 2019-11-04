@@ -2,7 +2,7 @@
 Get your Launchpad Pro playing the Octatrack
 
 ## tl;dr
-Hook up a Launchpad Pro to an Octatrack. Use its excellent Note mode to play samples chromaticaly, and its Drum mode to play sample slices MPC style.
+Hook up a Launchpad Pro to an Octatrack. Use its excellent Note mode to play samples chromaticaly, its Drum mode to play sample slices MPC style, and its Fader mode to view and change track levels from one place.
 
 ## The long version
 The Octrack from Elektron is a fine piece of music gear, able to handle anything from sample playing and chopping, to audio mixing and mangling, and much more. However, playing it like an instrument isn't so fun. Its 16 trigger buttons, layed out in a single row, is cumbersome to play on. Banging out beats with sample slices doesn't feel quite right, and playing melodic sample chromatically is unintuitive. Also, its MIDI implementation is a bit strange in parts.
@@ -15,7 +15,7 @@ That's where Octalaunch comes in. Octalaunch sits between the Launchpad Pro and 
 The initial aim for Octalaunch is to improve upon the playability of the Octatrack. I'm focusing efforts on areas the Octatrack doesn't do so well, e.g. playing chromatically, triggering sample slices, controlling track volumes in one place, etc. Functions it already does well I won't be focusing on, e.g. track muting, track parameters, freeze delay, etc.
 
 ## Gear setup
-Plug the Launchpad Pro into the computer running Octalaunch via USB. Hardware MIDI out from the Launchpad Pro plugs into the MIDI port on the Octatrack.
+Plug the Launchpad Pro into the computer running Octalaunch via USB. Hardware MIDI out from the Launchpad Pro plugs into the MIDI in port on the Octatrack; hardware MIDI in from the Launchpad Pro plugs into the MIDI out port of the Octatrack.
 
 For Launchpad Pro settings, for each of the standalone Note, Drum, and Fader modes, disable MIDI out and set the MIDI channel to the autochannel (the default is channel 11). See "Setup Page Options" in the Launchpad Pro manual.
 
@@ -23,7 +23,6 @@ For Launchpad Pro settings, for each of the standalone Note, Drum, and Fader mod
 ** Coming soon **
 
 ## The future
-* MIDI in from the Octatrack to keep Fader values in sync
 * Fully custom layouts that don't rely on the standalone modes (e.g. our own Live mode)
 * Support for other Launchpad models
 * Support for other grooveboxes / hardware setups
