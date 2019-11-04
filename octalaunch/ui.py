@@ -47,11 +47,12 @@ class Page(object):
     def uiDraw(self):
         pass
     def onMsg(self, port, msg):
-        if msg.type == 'note_on':
-            self.eventHandler.onNoteOn(port, msg)
-        elif msg.type == 'polytouch':
-            self.eventHandler.onPolytouch(port, msg)
-        elif msg.type == 'aftertouch':
-            self.eventHandler.onAftertouch(port, msg)
-        elif msg.type == 'control_change':
-            self.eventHandler.onCC(port, msg)
+        if self.eventHandler is not None:
+            if msg.type == 'note_on':
+                self.eventHandler.onNoteOn(port, msg)
+            elif msg.type == 'polytouch':
+                self.eventHandler.onPolytouch(port, msg)
+            elif msg.type == 'aftertouch':
+                self.eventHandler.onAftertouch(port, msg)
+            elif msg.type == 'control_change':
+                self.eventHandler.onCC(port, msg)
