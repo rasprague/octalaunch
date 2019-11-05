@@ -31,7 +31,7 @@ def setupLaunchpad():
     g['lp'] = lp
 
 def triggerOctatackMidiDump():
-    outMsg = mido.Message('control_change', channel=10, control=61, value=0)
+    outMsg = mido.Message('control_change', channel=midi.autochannel, control=61, value=0)
     midi.midiOutPort().send(outMsg)
     
 def gotoSavedSelectedPage():
