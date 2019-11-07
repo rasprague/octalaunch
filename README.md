@@ -12,7 +12,7 @@ Enter the Launchpad from Novation. The Launchpad is a MIDI controller featuring 
 That's where Octalaunch comes in. Octalaunch sits between the Launchpad Pro and the Octatack, utilizing the Launchpad's standalone modes, and translates between the two. Note mode restricts the notes played to the range the Octatack can understand (no more mistakenly muting tracks, arming tracks, or starting/stopping the sequencer). Drum mode triggers sample slices MPC style. Fader mode controls the volume of each Audio track.
 
 ## Goals
-The initial aim for Octalaunch is to improve upon the playability of the Octatrack. I'm focusing efforts on areas the Octatrack doesn't do so well, e.g. playing chromatically, triggering sample slices, controlling track volumes in one place, etc. Functions it already does well I won't be focusing on, e.g. track muting, track parameters, freeze delay, etc.
+The initial aim for Octalaunch is to improve upon the playability of the Octatrack. I'm focusing efforts on areas the Octatrack doesn't do so well, e.g. playing chromatically, triggering sample slices, controlling track volumes in one place, etc. Functions it already does well I won't be focusing on, e.g. track parameters, freeze delay, etc.
 
 ## Gear setup
 Plug the Launchpad Pro into the computer running Octalaunch via USB. Hardware MIDI out from the Launchpad Pro plugs into the MIDI in port on the Octatrack; hardware MIDI in from the Launchpad Pro plugs into the MIDI out port of the Octatrack.
